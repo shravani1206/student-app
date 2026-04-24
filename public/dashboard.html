@@ -8,11 +8,16 @@
 <script>
 let user = JSON.parse(localStorage.getItem("user"));
 
-document.getElementById("name").innerText = "Name: " + user.name;
-document.getElementById("email").innerText = "Email: " + user.email;
+if(!user){
+  // if not logged in → go to login page
+  window.location = "login.html";
+} else {
+  document.getElementById("name").innerText = "Name: " + user.name;
+  document.getElementById("email").innerText = "Email: " + user.email;
+}
 
 function logout(){
   localStorage.removeItem("user");
-  window.location="login.html";
+  window.location = "login.html";
 }
 </script>

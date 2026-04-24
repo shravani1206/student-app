@@ -3,7 +3,7 @@
 <table border="1" id="table"></table>
 
 <script>
-fetch("http://localhost:3000/users")
+fetch("https://student-app-1-51ox.onrender.com/users")
 .then(res=>res.json())
 .then(data=>{
   let table = document.getElementById("table");
@@ -11,10 +11,11 @@ fetch("http://localhost:3000/users")
   data.forEach((u,i)=>{
     table.innerHTML += `
     <tr>
-      <td>${i}</td>
+      <td>${i+1}</td>
       <td>${u.name}</td>
       <td>${u.email}</td>
     </tr>`;
   });
-});
+})
+.catch(err => console.log("Error:", err));
 </script>
