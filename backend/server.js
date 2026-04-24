@@ -33,9 +33,18 @@ const User = mongoose.model("User", userSchema);
 
 // REGISTER
 app.post("/register", async (req,res)=>{
-  const user = new User(req.body);
-  await user.save();
-  res.json({message:"Registered"});
+  try {
+    console.log("REGISTER DATA:", req.body);
+
+    const user = new User(req.body);
+    await user.save();
+
+    res.json({message:"Registered Successfully"});
+    
+  } catch(err){
+    console.log("REGISTER ERROR:", err);  // 👈 THIS IS KEY
+    res.status(500).json({message:"Error in registration"});
+  }
 });
 
 // LOGIN

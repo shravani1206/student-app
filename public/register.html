@@ -23,20 +23,25 @@ function register() {
   let password = document.getElementById("password").value;
 
   fetch("https://student-app-1-51ox.onrender.com/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ name, email, password })
-  })
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("msg").innerText = "Registered Successfully ✅";
-  })
-  .catch(err => {
-    document.getElementById("msg").innerText = "Error ❌";
-    console.log(err);
-  });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name, email, password })
+})
+.then(res => {
+  if (!res.ok) {
+    throw new Error("Server error");
+  }
+  return res.json();
+})
+.then(data => {
+  document.getElementById("msg").innerText = "Registered ✅";
+})
+.catch(err => {
+  console.log("ERROR:", err);
+  document.getElementById("msg").innerText = "Server Error ❌";
+});
 }
 </script>
 
