@@ -4,8 +4,8 @@
   <h2>Register</h2>
 
   <input type="text" id="name" placeholder="Name">
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
 
   <button onclick="register()">Register</button>
 
@@ -18,20 +18,26 @@
 
 <script>
 function register() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+
+  console.log(name, email, password); // 👈 DEBUG
+
   fetch("/register", {
     method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      name: name.value,
-      email: email.value,
-      password: password.value
-    })
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, email, password })
   })
-  .then(res=>res.json())
-  .then(data=>{
+  .then(res => res.json())
+  .then(data => {
     msg.innerText = "Registered ✅";
-    setTimeout(()=> window.location="login.html", 1000);
   })
-  .catch(()=> msg.innerText="Error ❌");
+  .catch(err => {
+    console.log(err);
+    msg.innerText = "Error ❌";
+  });
 }
 </script>
