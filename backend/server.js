@@ -6,6 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+console.log("✅ BACKEND SERVER RUNNING");
 // MongoDB
 mongoose.connect("mongodb+srv://navaleshravani6_db_user:3hRYc5Cn8ZhHJ9BB@cluster0.e47sdei.mongodb.net/studentsdb")
 .then(()=>console.log("MongoDB Connected"))
