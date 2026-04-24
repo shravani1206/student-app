@@ -1,23 +1,31 @@
-<h2>Dashboard</h2>
+<link rel="stylesheet" href="style.css">
 
-<p id="name"></p>
-<p id="email"></p>
+<div class="container">
+  <h2>Dashboard</h2>
 
-<button onclick="logout()">Logout</button>
+  <p id="name"></p>
+  <p id="email"></p>
+
+  <button onclick="goUsers()">View Users</button>
+  <button onclick="logout()">Logout</button>
+</div>
 
 <script>
 let user = JSON.parse(localStorage.getItem("user"));
 
 if(!user){
-  // if not logged in → go to login page
   window.location = "login.html";
-} else {
-  document.getElementById("name").innerText = "Name: " + user.name;
-  document.getElementById("email").innerText = "Email: " + user.email;
 }
+
+document.getElementById("name").innerText = "Name: " + user.name;
+document.getElementById("email").innerText = "Email: " + user.email;
 
 function logout(){
   localStorage.removeItem("user");
-  window.location = "login.html";
+  window.location="login.html";
+}
+
+function goUsers(){
+  window.location="users.html";
 }
 </script>

@@ -1,21 +1,30 @@
-<h2>All Students</h2>
+<link rel="stylesheet" href="style.css">
 
-<table border="1" id="table"></table>
+<div class="container">
+  <h2>All Users</h2>
+
+  <table id="table"></table>
+
+  <button onclick="back()">Back</button>
+</div>
 
 <script>
-fetch("https://student-app-1-51ox.onrender.com/users")
+fetch("/users")
 .then(res=>res.json())
 .then(data=>{
   let table = document.getElementById("table");
 
   data.forEach((u,i)=>{
     table.innerHTML += `
-    <tr>
-      <td>${i+1}</td>
-      <td>${u.name}</td>
-      <td>${u.email}</td>
-    </tr>`;
+      <tr>
+        <td>${i+1}</td>
+        <td>${u.name}</td>
+        <td>${u.email}</td>
+      </tr>`;
   });
-})
-.catch(err => console.log("Error:", err));
+});
+
+function back(){
+  window.location="dashboard.html";
+}
 </script>
