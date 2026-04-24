@@ -1,0 +1,18 @@
+<h2>Dashboard</h2>
+
+<p id="name"></p>
+<p id="email"></p>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+let user = JSON.parse(localStorage.getItem("user"));
+
+document.getElementById("name").innerText = "Name: " + user.name;
+document.getElementById("email").innerText = "Email: " + user.email;
+
+function logout(){
+  localStorage.removeItem("user");
+  window.location="login.html";
+}
+</script>

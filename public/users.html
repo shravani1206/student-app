@@ -1,0 +1,20 @@
+<h2>All Students</h2>
+
+<table border="1" id="table"></table>
+
+<script>
+fetch("http://localhost:3000/users")
+.then(res=>res.json())
+.then(data=>{
+  let table = document.getElementById("table");
+
+  data.forEach((u,i)=>{
+    table.innerHTML += `
+    <tr>
+      <td>${i}</td>
+      <td>${u.name}</td>
+      <td>${u.email}</td>
+    </tr>`;
+  });
+});
+</script>
