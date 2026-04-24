@@ -14,9 +14,14 @@ app.get("/", (req, res) => {
 
 console.log("✅ BACKEND SERVER RUNNING");
 // MongoDB
-mongoose.connect("mongodb+srv://navaleshravani6_db_user:3hRYc5Cn8ZhHJ9BB@cluster0.e47sdei.mongodb.net/studentsdb")
-.then(()=>console.log("MongoDB Connected"))
-.catch(err=>console.log(err))
+mongoose.connect(
+  "mongodb+srv://navaleshravani6_db_user:3hRYc5Cn8ZhHJ9BB@cluster0.e47sdei.mongodb.net/studentsdb?retryWrites=true&w=majority"
+)
+.then(()=>console.log("MongoDB Connected ✅"))
+.catch(err=>console.log("MongoDB Error ❌", err));
+mongoose.connection.on("connected", () => {
+  console.log("✅ MongoDB is LIVE");
+});
 
 // Schema
 const userSchema = new mongoose.Schema({
@@ -70,8 +75,13 @@ app.post("/login", async (req,res)=>{
 
 // GET USERS
 app.get("/users", async (req,res)=>{
-  const users = await User.find();
-  res.json(users);
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch(err){
+    console.log("GET USERS ERROR:", err);
+    res.status(500).json({message:"Error"});
+  }
 });
 
 const PORT = process.env.PORT || 3000;
