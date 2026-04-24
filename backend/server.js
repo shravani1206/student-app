@@ -39,7 +39,7 @@ app.post("/register", async (req,res)=>{
 });
 
 // LOGIN
-aapp.post("/login", async (req,res)=>{
+app.post("/login", async (req,res)=>{
   try {
     const { email, password } = req.body;
 
