@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB
-mongoose.connect("mongodb+srv://navaleshravani6_db_user:3hRYc5Cn8ZhHJ9BB@cluster0.e47sdei.mongodb.net/?appName=Cluster0")
+mongoose.connect("mongodb+srv://navaleshravani6_db_user:3hRYc5Cn8ZhHJ9BB@cluster0.e47sdei.mongodb.net/studentsdb")
 .then(()=>console.log("MongoDB Connected"))
 .catch(err=>console.log(err))
 
@@ -21,9 +21,7 @@ const userSchema = new mongoose.Schema({
 mongoose.connection.on("error", err => {
   console.log("MongoDB Error:", err);
 });
-app.get("/test", (req,res)=>{
-  res.send("Backend working");
-});
+
 const User = mongoose.model("User", userSchema);
 
 // REGISTER
